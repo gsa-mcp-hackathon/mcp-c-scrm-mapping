@@ -1,0 +1,24 @@
+# Databricks Apps deployment configuration for the v2 C-SCRM USA Spending MCP server.
+# Secrets (CSCRM_SIGNING_KEY, CSCRM_CONTINUATION_KEY) are bound at deploy time
+# via the Apps environment — never committed here.
+command:
+  [
+    "/bin/sh",
+    "-c",
+    "export PYTHONPATH=/app/python/source_code/src:$PYTHONPATH && exec python -m usaspending_cscrm_mcp.server_http",
+  ]
+env:
+  - name: AUTH_MODE
+    value: databricks_passthrough
+  # Signing key: Apps secret resource, bound at deploy time. No secret value
+  # is ever committed here; Databricks injects the decrypted value at runtime.
+  # Provisioning: docs/deployment.md.
+  # NOTE: these valueFrom names must match the custom Resource keys bound on
+  # the v2 app object (Apps UI → Edit → App resources). They are `secret` /
+  # `secret-2` (Databricks defaults), NOT the secret names themselves.
+  - name: CSCRM_SIGNING_KEY
+    valueFrom: secret
+  # Continuation/budget cursor key: separate secret so rotation and audit
+  # scopes stay independent from report signing.
+  - name: CSCRM_CONTINUATION_KEY
+    valueFrom: secret-2

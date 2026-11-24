@@ -1,0 +1,15 @@
+# Databricks Apps deployment configuration for the C-SCRM USA Spending MCP server.
+command:
+  [
+    "/bin/sh",
+    "-c",
+    "export PYTHONPATH=/app/python/source_code/src:$PYTHONPATH && python -m usa_spending_mcp_server.server_http",
+  ]
+env:
+  - name: AUTH_ENABLED
+    value: "false"
+  # Signing key: Apps secret resource (resource key `cscrm-signing-key`),
+  # bound at deploy time. No secret value is ever committed here; Databricks
+  # injects the decrypted value at runtime. Provisioning: docs/deployment.md.
+  - name: CSCRM_SIGNING_KEY
+    valueFrom: cscrm-signing-key

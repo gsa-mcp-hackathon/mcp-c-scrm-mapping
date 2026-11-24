@@ -1,0 +1,76 @@
+{
+  "description": "Default live-verification canaries: ground truth for the C-CURE-9000 target family, verified against the USAspending.gov v2 API (Oct 2026 runs, OVERALL PASS). Target-specific configuration, not code: replace probe_gids/canaries per target. Never quarantined: canary probes are verification anchors, not discovery.",
+  "probe_gids": [
+    "CONT_AWD_75D30124F00014_7523_GS07F190CA_4732",
+    "CONT_AWD_75D30124F00014_7523_75D30123D15913_7523",
+    "CONT_AWD_75F40125F19003_7524_75F40124D00013_7524",
+    "CONT_AWD_75F40124F19002_7524_75F40124D00013_7524",
+    "CONT_AWD_75F40124F19001_7524_75F40124D00013_7524",
+    "CONT_AWD_15DDHQ24F00000912_1524_15DDHQ24A00000028_1524",
+    "CONT_AWD_36C25521P0052_3600_-NONE-_-NONE-"
+  ],
+  "canaries": [
+    {
+      "id": "canary_1_eop_bpa",
+      "kind": "vehicle_children_count",
+      "parent_piid": "11316023A0004EOP_1100",
+      "expected_child_count": 21,
+      "require_parity": true,
+      "required_child_gids": [
+        "CONT_AWD_11316026F0015OAS_1100_11316023A0004EOP_1100",
+        "CONT_AWD_11316026F0058OAS_1100_11316023A0004EOP_1100"
+      ]
+    },
+    {
+      "id": "canary_2_gao_fcc",
+      "kind": "vehicle_children_set",
+      "vehicles": [
+        {
+          "parent_piid": "05GA0A21A0003_0559",
+          "required_child_piid_segments": ["05GA0A25K0106", "05GA0A24K0116"]
+        },
+        {
+          "parent_piid": "273FCC22A0014_2700",
+          "required_child_gids": [
+            "CONT_AWD_273FCC26F0028_2700_273FCC22A0014_2700",
+            "CONT_AWD_273FCC25F0151_2700_273FCC22A0014_2700"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "canary_3_hhs_bundled",
+      "kind": "bundled_tier_burn",
+      "parent_piid": "75F40124D00013",
+      "required_gids": [
+        "CONT_AWD_75F40125F19003_7524_75F40124D00013_7524",
+        "CONT_AWD_75F40124F19002_7524_75F40124D00013_7524",
+        "CONT_AWD_75F40124F19001_7524_75F40124D00013_7524"
+      ],
+      "expected_tier": "Tier-1B",
+      "competitor_terms": ["MDI"],
+      "competitor_provenance": "MDI (Monitor Dynamics) names a second OEM in the HHS canary records' own text (Oct 27 corpus; live descriptions unchanged). Target-specific config, not code vocabulary: Tier-1B fires only when the manifest/canary supplies the term.",
+      "min_burn": 0.75
+    },
+    {
+      "id": "canary_4_oem_direct",
+      "kind": "oem_direct",
+      "gids": [
+        "CONT_AWD_15DDHQ24F00000912_1524_15DDHQ24A00000028_1524",
+        "CONT_AWD_75D30124F00014_7523_GS07F190CA_4732"
+      ],
+      "expected_channel": "OEM_DIRECT_SUBSIDIARY",
+      "expected_name_fragment": "JOHNSON CONTROLS",
+      "verified_ueis": ["G15SWMLGAX81", "WE3GES317KN9", "SK1EKRJUEKA7"],
+      "uei_provenance": "Observed live 2026-11-01 on the canary GIDs: DEA award recipient JOHNSON CONTROLS BUILDING AUTOMATION SYSTEMS LLC / G15SWMLGAX81 (self-parented); CDC award recipient JOHNSON CONTROLS BUILDING SOLUTIONS LLC / WE3GES317KN9 under parent JOHNSON CONTROLS INTERNATIONAL PLC / SK1EKRJUEKA7. Supersedes Oct-23 report UEIs CE8MGXAS9KJ6/K9HJHLAKXE96 (different awards/snapshots)."
+    },
+    {
+      "id": "canary_5_collision_prewindow",
+      "kind": "collision_straddle",
+      "gid_a": "CONT_AWD_75D30124F00014_7523_GS07F190CA_4732",
+      "gid_b": "CONT_AWD_75D30124F00014_7523_75D30123D15913_7523",
+      "shared_piid": "75D30124F00014",
+      "straddle_gid": "CONT_AWD_36C25521P0052_3600_-NONE-_-NONE-"
+    }
+  ]
+}
