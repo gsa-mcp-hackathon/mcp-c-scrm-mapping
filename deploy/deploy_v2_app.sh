@@ -5,8 +5,12 @@
 # deploy/v2-app/app.yaml afterwards. Never deploy the v2 app with a bare
 # import-dir.
 set -eu
-PROFILE="${DATABRICKS_PROFILE:-goldstein.menachem@pbgc.gov}"
-V2PATH="/Workspace/Users/goldstein.menachem@pbgc.gov/cscrm-usa-spending-mcp-v2"
+# Required environment:
+#   DATABRICKS_PROFILE  Databricks CLI profile to deploy with
+#   CSCRM_V2_PATH       Workspace folder for the v2 app source,
+#                       e.g. /Workspace/Users/<you>/cscrm-usa-spending-mcp-v2
+PROFILE="${DATABRICKS_PROFILE:?set DATABRICKS_PROFILE to your Databricks CLI profile}"
+V2PATH="${CSCRM_V2_PATH:?set CSCRM_V2_PATH to the v2 app workspace folder}"
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 # Native Windows tools (databricks CLI) cannot resolve MSYS /c/... paths:
 # convert to a C:/...-style path when running under git-bash/MSYS.

@@ -6,7 +6,7 @@ and writes a QA-able bundle: report markdown + manifest/cert/gates JSON.
 Usage:
     PYTHONPATH=src python evals/run_target_audit.py --target "Jamf Protect" \\
         --terms "Jamf Protect,Jamf Pro,Jamf Connect,Jamf" \\
-        --outdir "C:/Users/User/Desktop/fed_procurement_deliverables"
+        --outdir "./deliverables"
 """
 
 from __future__ import annotations

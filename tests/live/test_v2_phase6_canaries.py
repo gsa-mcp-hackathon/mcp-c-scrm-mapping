@@ -10,6 +10,7 @@
 """
 
 import json
+import os
 import re
 from datetime import UTC, date, datetime
 from pathlib import Path
@@ -33,13 +34,14 @@ from usaspending_cscrm_mcp.pipeline.stage4_adjudicate import (
 )
 from usaspending_cscrm_mcp.recipient_graph import classify_channel
 
-LEGACY_MANIFEST = Path(
-    "C:/Users/User/AppData/Local/hermes/cache/scratch/cscrm_stage0_manifest.json")
+# Path to the legacy Stage-0 manifest; set CSCRM_STAGE0_MANIFEST to run.
+_MANIFEST_ENV = os.environ.get("CSCRM_STAGE0_MANIFEST", "").strip()
+LEGACY_MANIFEST = Path(_MANIFEST_ENV) if _MANIFEST_ENV else None
 WINDOW = ("2023-10-01", "2026-12-31")
 
 
 def load_terms():
-    if not LEGACY_MANIFEST.exists():
+    if LEGACY_MANIFEST is None or not LEGACY_MANIFEST.is_file():
         pytest.skip("legacy Stage-0 manifest absent (scratch pruned?)")
     m = json.loads(LEGACY_MANIFEST.read_text())
     return (m.get("standalone_keywords", []), m.get("context_gated_keywords", []),
@@ -193,7 +195,7 @@ async def test_live_canaries_all_pass(tmp_path):
             "canaries": [r.model_dump(mode="json") for r in results],
             "tiers": tiers,
         }
-        evals = Path("C:/Users/User/projects/cscrm-usa-spending-mcp/evals")
+        evals = Path(__file__).resolve().parents[2] / "evals"
         evals.mkdir(exist_ok=True)
         stamp = date.today().isoformat()
         (evals / f"live_canaries_{stamp}.json").write_text(json.dumps(artifact, indent=2))

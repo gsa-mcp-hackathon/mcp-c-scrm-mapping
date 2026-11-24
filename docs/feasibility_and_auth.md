@@ -1,14 +1,14 @@
 # Phase 0 — Feasibility & Authentication (2026-11-01)
 
 ## Environment (verified this date)
-- Repo: `C:/Users/User/projects/cscrm-usa-spending-mcp`, git clean at `6c480e4`
+- Repo: local checkout of `cscrm-usa-spending-mcp`, git clean at `6c480e4`
   ("INV2 adjudication bar…"), no docs/, no databricks.yml, no canaries.json.
 - Package `usa-spending-cscrm-mcp-server` 0.1.0 (`usa_spending_mcp_server`), hatchling wheel,
   `requires-python >=3.11`. Local interpreter 3.14.7; lockfile compiled for 3.11 x86_64 Linux.
 - Pinned: fastmcp 4.1.3, httpx 0.28.1, pydantic 2.x, uvicorn, starlette. `ruff` + `pytest` green (87/2).
-- Databricks CLI v1.21.0. Host `https://dbc-aae0ba16-8727.cloud.databricks.com`.
+- Databricks CLI v1.21.0. Host `https://<workspace-host>.cloud.databricks.com`.
 - App `cscrm-usa-spending-mcp` RUNNING (MEDIUM) at
-  `https://cscrm-usa-spending-mcp-7474654188777746.aws.databricksapps.com`
+  `https://cscrm-usa-spending-mcp-<workspace-id>.aws.databricksapps.com`
   (app update_time 2026-11-01T00:40:50Z — redeploy occurred outside agent sessions; owner unconfirmed).
 - Live tools/list returns 10 tools (names differ from §5 — see architecture.md).
 - `app.yaml` sets `AUTH_ENABLED=false`; startup binds 0.0.0.0 on `DATABRICKS_APP_PORT`/`PORT`/8000;
