@@ -1,0 +1,43 @@
+{
+  "ran_at": "2026-11-01T21:27:36.289135+00:00",
+  "window": [
+    "2023-10-01",
+    "2026-12-31"
+  ],
+  "canaries": [
+    {
+      "gate_id": "canary_1_eop_bpa",
+      "status": "PASS",
+      "detail": "children=21/21 parity=True"
+    },
+    {
+      "gate_id": "canary_2_gao_fcc",
+      "status": "PASS",
+      "detail": "05GA0A21A0003: True; 273FCC22A0014: True"
+    },
+    {
+      "gate_id": "canary_3_hhs_bundled",
+      "status": "PASS",
+      "detail": "present=True tiers=True burn=0.8180158685"
+    },
+    {
+      "gate_id": "canary_4_oem_direct",
+      "status": "PASS",
+      "detail": "CONT_AWD_15DDHQ24F00000912_1524_15DDHQ24A00000028_1524: name=True channel=OEM_DIRECT_SUBSIDIARY; CONT_AWD_75D30124F00014_7523_GS07F190CA_4732: name=True channel=OEM_DIRECT_SUBSIDIARY"
+    },
+    {
+      "gate_id": "canary_5_collision_prewindow",
+      "status": "PASS",
+      "detail": "tiers=Tier-1A/DROPPED straddle_in=2652354.87 life=5638560.57"
+    }
+  ],
+  "tiers": {
+    "CONT_AWD_75D30124F00014_7523_GS07F190CA_4732": "Tier-1A",
+    "CONT_AWD_75D30124F00014_7523_75D30123D15913_7523": "DROPPED",
+    "CONT_AWD_75F40125F19003_7524_75F40124D00013_7524": "Tier-1B",
+    "CONT_AWD_75F40124F19002_7524_75F40124D00013_7524": "Tier-1B",
+    "CONT_AWD_75F40124F19001_7524_75F40124D00013_7524": "Tier-1B",
+    "CONT_AWD_15DDHQ24F00000912_1524_15DDHQ24A00000028_1524": "Tier-1A",
+    "CONT_AWD_36C25521P0052_3600_-NONE-_-NONE-": "Tier-1A"
+  }
+}

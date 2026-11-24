@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "name": "vendor_microsoft_fy24",
+      "passed": true,
+      "seconds": 0.56,
+      "notes": [
+        "agency present: Department of Defense",
+        "awards=25"
+      ],
+      "llm": null
+    },
+    {
+      "name": "product_cloud_reseller",
+      "passed": true,
+      "seconds": 0.22,
+      "notes": [
+        "agency present: Department of Defense",
+        "awards=25"
+      ],
+      "llm": null
+    },
+    {
+      "name": "award_detail_microsoft_do",
+      "passed": true,
+      "seconds": 0.11,
+      "notes": [
+        "parent UEI match: NX52EXRHRDK7",
+        "NAICS base match: 541512"
+      ],
+      "llm": null
+    }
+  ],
+  "passed": 3,
+  "total": 3
+}
